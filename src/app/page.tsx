@@ -1,12 +1,28 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
+import { useState } from "react";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const CONTRACT_ADDRESS = "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb8";
 
 export default function Home() {
+  const [copied, setCopied] = useState(false);
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(CONTRACT_ADDRESS);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
+
   return (
     <div className="px-4 sm:px-6">
       {/* HERO */}
@@ -50,6 +66,29 @@ export default function Home() {
             <Button asChild size="lg" variant="outline" className="border-purple-500/50 text-purple-300 hover:bg-purple-500/10 px-8 py-3 text-lg font-semibold backdrop-blur-sm">
               <Link href="/whitepaper">📄 READ WHITEPAPER</Link>
             </Button>
+          </div>
+
+          {/* Contract Address */}
+          <div className="mt-12 flex flex-col items-center gap-3">
+            <p className="text-sm text-muted-foreground font-medium">📜 Contract Address</p>
+            <div className="flex items-center gap-2 bg-black/40 backdrop-blur-sm border border-purple-500/30 rounded-lg px-4 py-3 max-w-full">
+              <code className="text-sm sm:text-base text-purple-300 font-mono break-all">
+                {CONTRACT_ADDRESS}
+              </code>
+              <Button
+                onClick={copyToClipboard}
+                size="sm"
+                variant="ghost"
+                className="shrink-0 h-8 w-8 p-0 hover:bg-purple-500/20 text-purple-300"
+              >
+                {copied ? "✓" : "📋"}
+              </Button>
+            </div>
+            {copied && (
+              <p className="text-xs text-emerald-400 animate-in fade-in duration-200">
+                Copied to clipboard!
+              </p>
+            )}
           </div>
 
           {/* Hero Image */}
