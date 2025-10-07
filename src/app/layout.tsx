@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Toaster } from "@/components/ui/sonner";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -41,7 +43,7 @@ export default function RootLayout({
             <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
               <Link href="/" className="flex items-center gap-3" aria-label="VARIATIC Home">
                 <div className="relative">
-                  <Image src="/logo.png" alt="VARIATIC" width={32} height={32} className="rounded-lg" />
+                  <Image src={`${basePath}/logo.png`} alt="VARIATIC" width={32} height={32} className="rounded-lg" />
                   <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-emerald-500 to-cyan-500 rounded-lg blur opacity-30"></div>
                 </div>
                 <span className="font-bold tracking-tight hidden sm:inline text-xl bg-gradient-to-r from-purple-400 to-emerald-400 bg-clip-text text-transparent">VARIATIC</span>

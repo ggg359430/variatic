@@ -4,6 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export default function Home() {
   return (
     <div className="px-4 sm:px-6">
@@ -12,7 +14,7 @@ export default function Home() {
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10 animate-gradient" style={{ backgroundImage: "linear-gradient(120deg, rgba(139,92,246,0.15), rgba(16,185,129,0.15), rgba(6,182,212,0.15))", backgroundSize: "200% 200%" }}>
           <Image
-            src="/images/background-pattern.png"
+            src={`${basePath}/images/background-pattern.png`}
             alt=""
             fill
             className="object-cover"
@@ -24,7 +26,7 @@ export default function Home() {
         <div className="relative z-10">
           <div className="flex items-center justify-center mb-6">
             <div className="relative">
-              <Image src="/logo.png" alt="VARIATIC Logo" width={100} height={100} className="rounded-xl shadow-2xl animate-rise" />
+              <Image src={`${basePath}/logo.png`} alt="VARIATIC Logo" width={100} height={100} className="rounded-xl shadow-2xl animate-rise" />
               <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-emerald-500 to-cyan-500 rounded-xl blur opacity-60 animate-glow"></div>
             </div>
           </div>
@@ -54,7 +56,7 @@ export default function Home() {
           <div className="mt-16 relative">
             <div className="relative mx-auto max-w-4xl">
               <Image
-                src="/images/hero-variatic.png"
+                src={`${basePath}/images/hero-variatic.png`}
                 alt="VARIATIC Token Evolution"
                 width={800}
                 height={400}
@@ -104,7 +106,7 @@ export default function Home() {
 
           <div className="relative">
             <Image
-              src="/images/meme-problem.png"
+              src={`${basePath}/images/meme-problem.png`}
               alt="The Problem with Meme Coins"
               width={600}
               height={400}
@@ -130,7 +132,7 @@ export default function Home() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="relative order-2 lg:order-1">
             <Image
-              src="/images/variatic-solution.png"
+              src={`${basePath}/images/variatic-solution.png`}
               alt="VARIATIC Solution"
               width={600}
               height={400}
@@ -254,7 +256,7 @@ export default function Home() {
 
           <div className="relative">
             <Image
-              src="/images/ecosystem-network.png"
+              src={`${basePath}/images/ecosystem-network.png`}
               alt="VARIATIC Ecosystem Network"
               width={600}
               height={400}
