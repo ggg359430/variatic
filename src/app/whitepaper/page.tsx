@@ -216,44 +216,147 @@ export default function WhitepaperPage() {
       <section className="max-w-5xl mx-auto py-8">
         <div className="text-center mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent mb-4">
-            💎 Tokenomics
+            💎 Tokenomics — Fair Launch
           </h2>
+          <p className="text-muted-foreground text-lg mt-4 max-w-3xl mx-auto">
+            No presale. No airdrop. Everyone enters equally on launch day.
+          </p>
         </div>
 
-        <Card className="border-yellow-500/20 bg-yellow-500/5 backdrop-blur-sm">
-          <CardContent className="pt-8 pb-8 px-8">
-            <div className="space-y-5 text-muted-foreground text-lg">
+        <div className="space-y-6">
+          {/* Total Supply */}
+          <Card className="border-yellow-500/20 bg-yellow-500/5 backdrop-blur-sm">
+            <CardContent className="pt-8 pb-8 px-8">
               <div className="flex items-start gap-4">
-                <span className="text-yellow-400 text-2xl">🪙</span>
-                <div>
-                  <p className="font-semibold text-white mb-1">Total Supply</p>
-                  <p>[TBA] — To be announced at genesis launch.</p>
+                <span className="text-yellow-400 text-3xl">🪙</span>
+                <div className="flex-1">
+                  <p className="text-2xl font-bold text-white mb-2">Total Supply</p>
+                  <p className="text-xl text-yellow-300 font-mono">1,000,000,000 VARIATIC</p>
+                  <p className="text-muted-foreground mt-2">Fixed cap — no inflation, no hidden mints.</p>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Launch Mechanism */}
+          <Card className="border-emerald-500/20 bg-emerald-500/5 backdrop-blur-sm">
+            <CardContent className="pt-8 pb-8 px-8">
               <div className="flex items-start gap-4">
-                <span className="text-yellow-400 text-2xl">💧</span>
-                <div>
-                  <p className="font-semibold text-white mb-1">Liquidity</p>
-                  <p>Shared pool across all narratives. Liquidity never fragments, only grows.</p>
+                <span className="text-emerald-400 text-3xl">🚀</span>
+                <div className="flex-1">
+                  <p className="text-2xl font-bold text-white mb-3">Launch Mechanism</p>
+                  <p className="text-lg text-muted-foreground mb-4">
+                    100% of tokens enter circulation at TGE (Token Generation Event). No presale, no early insider allocations.
+                  </p>
+                  <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-4">
+                    <p className="text-emerald-300 font-semibold mb-2">Initial Liquidity:</p>
+                    <ul className="space-y-2 text-muted-foreground">
+                      <li>• Paired with ETH in Uniswap v3 decentralized pool</li>
+                      <li>• Liquidity locked for 12–24 months to guarantee fairness</li>
+                      <li>• No whitelist, no VC allocation — open to all</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Distribution */}
+          <Card className="border-cyan-500/20 bg-cyan-500/5 backdrop-blur-sm">
+            <CardContent className="pt-8 pb-8 px-8">
               <div className="flex items-start gap-4">
-                <span className="text-yellow-400 text-2xl">🔥</span>
-                <div>
-                  <p className="font-semibold text-white mb-1">Burns</p>
-                  <p>Supply reduced during narrative shifts. Deflationary mechanics built into evolution.</p>
+                <span className="text-cyan-400 text-3xl">📊</span>
+                <div className="flex-1">
+                  <p className="text-2xl font-bold text-white mb-4">Distribution</p>
+                  <div className="space-y-4">
+                    <div className="bg-cyan-500/10 border border-cyan-500/30 rounded-lg p-5">
+                      <div className="flex justify-between items-center mb-2">
+                        <p className="text-xl font-semibold text-cyan-300">Public Liquidity Pool</p>
+                        <p className="text-2xl font-bold text-cyan-300">90%</p>
+                      </div>
+                      <p className="text-muted-foreground">Available to all buyers from Day 1. No whitelist, no VC allocation.</p>
+                    </div>
+                    <div className="bg-purple-500/10 border border-purple-500/30 rounded-lg p-5">
+                      <div className="flex justify-between items-center mb-2">
+                        <p className="text-xl font-semibold text-purple-300">Community Treasury</p>
+                        <p className="text-2xl font-bold text-purple-300">5%</p>
+                      </div>
+                      <p className="text-muted-foreground">Managed by DAO for meme contests, marketing, and partnerships.</p>
+                    </div>
+                    <div className="bg-pink-500/10 border border-pink-500/30 rounded-lg p-5">
+                      <div className="flex justify-between items-center mb-2">
+                        <p className="text-xl font-semibold text-pink-300">Development Fund</p>
+                        <p className="text-2xl font-bold text-pink-300">5%</p>
+                      </div>
+                      <p className="text-muted-foreground">Multi-sig controlled, gradual unlocks for upgrades and audits.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Deflationary Mechanics */}
+          <Card className="border-orange-500/20 bg-orange-500/5 backdrop-blur-sm">
+            <CardContent className="pt-8 pb-8 px-8">
               <div className="flex items-start gap-4">
-                <span className="text-yellow-400 text-2xl">🏛️</span>
-                <div>
-                  <p className="font-semibold text-white mb-1">Governance</p>
-                  <p>Token = vote in MemeDAO. Your holdings determine your voice in the narrative.</p>
+                <span className="text-orange-400 text-3xl">🔥</span>
+                <div className="flex-1">
+                  <p className="text-2xl font-bold text-white mb-4">Deflationary Mechanics</p>
+                  <div className="space-y-4 text-muted-foreground text-lg">
+                    <div className="flex items-start gap-3">
+                      <span className="text-orange-400 text-xl">🔥</span>
+                      <div>
+                        <p className="font-semibold text-white mb-1">Narrative Burn</p>
+                        <p>Each time the token shifts identity, a portion of tokens (1–3%) is burned permanently.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <span className="text-purple-400 text-xl">🗳️</span>
+                      <div>
+                        <p className="font-semibold text-white mb-1">DAO Utility</p>
+                        <p>VARIATIC tokens used for voting in MemeDAO governance decisions.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <span className="text-cyan-400 text-xl">💬</span>
+                      <div>
+                        <p className="font-semibold text-white mb-1">Meme Incentives</p>
+                        <p>Community contributors receive rewards directly from DAO treasury, not hidden allocations.</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+
+          {/* Key Principles */}
+          <Card className="border-green-500/20 bg-green-500/5 backdrop-blur-sm">
+            <CardContent className="pt-8 pb-8 px-8">
+              <div className="flex items-start gap-4">
+                <span className="text-green-400 text-3xl">✨</span>
+                <div className="flex-1">
+                  <p className="text-2xl font-bold text-white mb-4">Key Principles</p>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-5">
+                      <p className="text-xl font-semibold text-green-300 mb-2">⚖️ Fairness</p>
+                      <p className="text-muted-foreground">No private sale, no early insiders. Everyone enters on equal footing.</p>
+                    </div>
+                    <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-5">
+                      <p className="text-xl font-semibold text-blue-300 mb-2">🔍 Transparency</p>
+                      <p className="text-muted-foreground">Liquidity locked, treasury on-chain, governance via DAO.</p>
+                    </div>
+                    <div className="bg-purple-500/10 border border-purple-500/30 rounded-lg p-5">
+                      <p className="text-xl font-semibold text-purple-300 mb-2">♾️ Sustainability</p>
+                      <p className="text-muted-foreground">Deflationary burns + evolving narratives = long-term relevance.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </section>
 
       <Separator className="max-w-5xl mx-auto my-12" />
