@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
-// Allow setting base path via env for GitHub Pages (e.g., "/repo-name")
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+// Hardcode basePath for GitHub Pages to ensure asset URLs are prefixed correctly
+const basePath = "/variatic";
 
 const nextConfig: NextConfig = {
   output: "export",
