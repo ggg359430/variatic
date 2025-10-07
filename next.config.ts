@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
-// Hardcode basePath for GitHub Pages to ensure asset URLs are prefixed correctly
-const basePath = "/variatic";
+// Only use basePath for production builds (GitHub Pages)
+const isProd = process.env.NODE_ENV === "production";
+const basePath = isProd ? "/variatic" : "";
 
 const nextConfig: NextConfig = {
   output: "export",
