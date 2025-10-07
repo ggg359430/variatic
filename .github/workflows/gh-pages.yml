@@ -36,12 +36,19 @@ jobs:
         run: npm run build:static
 
       - name: Prepare static output folder
+        shell: pwsh
         run: |
-          mkdir -p out
-          cp -r .next/static out/_next/static
-          cp -r public/* out/ 2> NUL || true
-          copy /y public\.nojekyll out\.nojekyll 2> NUL || echo.> out\.nojekyll
-          (Get-Content .next\BUILD_ID) | Out-File -FilePath out\BUILD_ID -Encoding ascii
+          New-Item -ItemType Directory -Force -Path out | Out-Null
+          # Copy Next static assets
+          New-Item -ItemType Directory -Force -Path out\_next\static | Out-Null
+          Copy-Item -Recurse -Force .next\static\* out\_next\static\
+          # Copy prerendered HTML
+          Copy-Item -Force .next\server\app\index.html out\index.html
+          if (Test-Path .next\server\app\_not-found.html) { Copy-Item -Force .next\server\app\_not-found.html out\404.html }
+          # Public assets (images, favicon, etc.)
+          if (Test-Path public) { Copy-Item -Recurse -Force public\* out\  -ErrorAction SilentlyContinue }
+          # Ensure .nojekyll exists
+          if (!(Test-Path out\.nojekyll)) { New-Item -ItemType File -Path out\.nojekyll | Out-Null }
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
