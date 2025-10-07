@@ -8,32 +8,62 @@ export default function Home() {
   return (
     <div className="px-4 sm:px-6">
       {/* HERO */}
-      <section className="max-w-6xl mx-auto py-20 sm:py-28 text-center">
-        <div className="flex items-center justify-center">
-          <Image src="/logo.png" alt="VARIATIC Logo" width={80} height={80} className="rounded-sm" />
+      <section className="relative max-w-7xl mx-auto py-20 sm:py-32 text-center overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <Image
+            src="/images/background-pattern.png"
+            alt=""
+            fill
+            className="object-cover"
+            priority
+          />
         </div>
-        <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs text-muted-foreground">
-          🧠 MEME TOKEN REIMAGINED
-        </div>
-        <h1 className="mt-6 text-4xl sm:text-6xl font-semibold tracking-tight">
-          🔥 One Token. Infinite Narratives.
-        </h1>
-        <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-          💧 One token instead of hundreds of short-lived memes. <br />
-          🧬 VARIATIC unifies meme-coin liquidity in a single contract. <br />
-          🚀 We change the narrative — not the token.
-        </p>
-        <div className="mt-8 flex items-center justify-center gap-3">
-          <Button asChild size="lg">
-            <Link href="#join">🎮 JOIN EARLY</Link>
-          </Button>
-          <Button asChild size="lg" variant="outline">
-            <Link href="#litepaper">📄 READ LITEPAPER</Link>
-          </Button>
-        </div>
-        <div className="mt-12 h-28 sm:h-40 rounded-xl bg-gradient-to-r from-purple-500/20 via-emerald-500/20 to-cyan-500/20 border flex items-center justify-center text-muted-foreground">
-          {/* Placeholder for logo morph animation */}
-          DOGE → PEPE → VARIATIC → ???
+
+        {/* Hero Content */}
+        <div className="relative z-10">
+          <div className="flex items-center justify-center mb-6">
+            <div className="relative">
+              <Image src="/logo.png" alt="VARIATIC Logo" width={100} height={100} className="rounded-xl shadow-2xl" />
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-emerald-500 to-cyan-500 rounded-xl blur opacity-75 animate-pulse"></div>
+            </div>
+          </div>
+
+          <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-2 text-sm font-medium text-purple-300 backdrop-blur-sm">
+            🧠 MEME TOKEN REIMAGINED
+          </div>
+
+          <h1 className="mt-8 text-5xl sm:text-7xl font-bold tracking-tight bg-gradient-to-r from-purple-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+            One Token. Infinite Narratives.
+          </h1>
+
+          <p className="mt-8 text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            One token instead of hundreds of short-lived memes. VARIATIC unifies meme-coin liquidity in a single contract. We change the narrative — not the token.
+          </p>
+
+          <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button asChild size="lg" className="bg-gradient-to-r from-purple-600 to-emerald-600 hover:from-purple-700 hover:to-emerald-700 text-white border-0 px-8 py-3 text-lg font-semibold shadow-xl">
+              <Link href="#join">🎮 JOIN EARLY</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="border-purple-500/50 text-purple-300 hover:bg-purple-500/10 px-8 py-3 text-lg font-semibold backdrop-blur-sm">
+              <Link href="#litepaper">📄 READ LITEPAPER</Link>
+            </Button>
+          </div>
+
+          {/* Hero Image */}
+          <div className="mt-16 relative">
+            <div className="relative mx-auto max-w-4xl">
+              <Image
+                src="/images/hero-variatic.png"
+                alt="VARIATIC Token Evolution"
+                width={800}
+                height={400}
+                className="rounded-2xl shadow-2xl border border-purple-500/20"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent rounded-2xl"></div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -50,35 +80,95 @@ export default function Home() {
       <Separator id="problem" />
 
       {/* PROBLEM */}
-      <section className="max-w-6xl mx-auto py-16 grid gap-6">
-        <h2 className="text-2xl sm:text-3xl font-semibold">💀 The Problem</h2>
-        <Card>
-          <CardContent className="pt-6 grid gap-3 text-muted-foreground">
-            <p>Every meme token lives for a couple of weeks. Memes change — liquidity leaves. You miss the wave as it crashes.</p>
-            <p>💸 Capital scatters across hundreds of “next PEPE” with no future. The market is fragmented. Memes compete instead of amplifying each other.</p>
-          </CardContent>
-        </Card>
+      <section className="max-w-7xl mx-auto py-20 grid gap-8">
+        <div className="text-center">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent mb-4">
+            💀 The Problem
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Traditional meme tokens are doomed to fail from the start
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <Card className="border-red-500/20 bg-red-500/5 backdrop-blur-sm">
+              <CardContent className="pt-8 pb-8 px-8">
+                <div className="space-y-4 text-muted-foreground">
+                  <p className="text-lg leading-relaxed">Every meme token lives for a couple of weeks. Memes change — liquidity leaves. You miss the wave as it crashes.</p>
+                  <p className="text-lg leading-relaxed">💸 Capital scatters across hundreds of "next PEPE" with no future. The market is fragmented. Memes compete instead of amplifying each other.</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="relative">
+            <Image
+              src="/images/meme-problem.png"
+              alt="The Problem with Meme Coins"
+              width={600}
+              height={400}
+              className="rounded-2xl shadow-2xl border border-red-500/20"
+            />
+          </div>
+        </div>
       </section>
 
       <Separator id="solution" />
 
       {/* SOLUTION */}
-      <section className="max-w-6xl mx-auto py-16 grid gap-6">
-        <h2 className="text-2xl sm:text-3xl font-semibold">⚡️ The Solution — VARIATIC</h2>
-        <Card>
-          <CardContent className="pt-6 grid gap-4">
-            <p>
-              VARIATIC is the first living meme token that adapts to trends while keeping the same liquidity and contract. When a narrative fades, we simply change the skin.
-            </p>
-            <p>🧬 One contract. 100 faces. Infinite life.</p>
-            <ul className="list-disc pl-5 grid gap-2 text-muted-foreground">
-              <li>🔁 Change name and symbol without redeploy</li>
-              <li>💧 Liquidity stays inside the token</li>
-              <li>🧠 Community governs evolution</li>
-              <li>⚙️ DAO + meme narratives support</li>
-            </ul>
-          </CardContent>
-        </Card>
+      <section className="max-w-7xl mx-auto py-20 grid gap-8">
+        <div className="text-center">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent mb-4">
+            ⚡️ The Solution — VARIATIC
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            The first living meme token that evolves without dying
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="relative order-2 lg:order-1">
+            <Image
+              src="/images/variatic-solution.png"
+              alt="VARIATIC Solution"
+              width={600}
+              height={400}
+              className="rounded-2xl shadow-2xl border border-emerald-500/20"
+            />
+          </div>
+
+          <div className="space-y-6 order-1 lg:order-2">
+            <Card className="border-emerald-500/20 bg-emerald-500/5 backdrop-blur-sm">
+              <CardContent className="pt-8 pb-8 px-8">
+                <div className="space-y-6">
+                  <p className="text-lg leading-relaxed text-muted-foreground">
+                    VARIATIC is the first living meme token that adapts to trends while keeping the same liquidity and contract. When a narrative fades, we simply change the skin.
+                  </p>
+                  <p className="text-xl font-semibold text-emerald-400">🧬 One contract. 100 faces. Infinite life.</p>
+                  <ul className="grid gap-3 text-muted-foreground">
+                    <li className="flex items-center gap-3">
+                      <span className="text-emerald-400">🔁</span>
+                      <span>Change name and symbol without redeploy</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="text-emerald-400">💧</span>
+                      <span>Liquidity stays inside the token</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="text-emerald-400">🧠</span>
+                      <span>Community governs evolution</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="text-emerald-400">⚙️</span>
+                      <span>DAO + meme narratives support</span>
+                    </li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </section>
 
       <Separator id="why" />
@@ -121,19 +211,57 @@ export default function Home() {
       <Separator id="community" />
 
       {/* COMMUNITY & DAO */}
-      <section className="max-w-6xl mx-auto py-16 grid gap-6">
-        <h2 className="text-2xl sm:text-3xl font-semibold">💬 Community & DAO</h2>
-        <Card>
-          <CardContent className="pt-6 grid gap-3 text-muted-foreground">
-            <p>VARIATIC is not a project — it’s a living meme-network.</p>
-            <ul className="list-disc pl-5 grid gap-2">
-              <li>DAO voting for the next narrative</li>
-              <li>Meme Factory — propose and publish ideas</li>
-              <li>Meme of the Week — weekly challenge</li>
-              <li>Opinion leaders → “Narrative Council”</li>
-            </ul>
-          </CardContent>
-        </Card>
+      <section className="max-w-7xl mx-auto py-20 grid gap-8">
+        <div className="text-center">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
+            💬 Community & DAO
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            A living meme-network powered by community governance
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <Card className="border-purple-500/20 bg-purple-500/5 backdrop-blur-sm">
+              <CardContent className="pt-8 pb-8 px-8">
+                <div className="space-y-6">
+                  <p className="text-lg leading-relaxed text-muted-foreground">
+                    VARIATIC is not a project — it's a living meme-network.
+                  </p>
+                  <ul className="grid gap-4 text-muted-foreground">
+                    <li className="flex items-center gap-3">
+                      <span className="text-purple-400">🗳️</span>
+                      <span>DAO voting for the next narrative</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="text-purple-400">🏭</span>
+                      <span>Meme Factory — propose and publish ideas</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="text-purple-400">⭐</span>
+                      <span>Meme of the Week — weekly challenge</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="text-purple-400">👑</span>
+                      <span>Opinion leaders → "Narrative Council"</span>
+                    </li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="relative">
+            <Image
+              src="/images/ecosystem-network.png"
+              alt="VARIATIC Ecosystem Network"
+              width={600}
+              height={400}
+              className="rounded-2xl shadow-2xl border border-purple-500/20"
+            />
+          </div>
+        </div>
       </section>
 
       <Separator id="tokenomics" />
@@ -168,23 +296,44 @@ export default function Home() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="max-w-4xl mx-auto py-20 sm:py-24 text-center" id="join">
-        <h3 className="text-3xl sm:text-4xl font-semibold tracking-tight">
-          🚀 Don’t chase the next meme. Be the meme.
-        </h3>
-        <p className="mt-4 text-muted-foreground">
-          VARIATIC — the only meme that survives time.
-        </p>
-        <div className="mt-8 flex items-center justify-center gap-3">
-          <Button asChild size="lg">
-            <Link href="#join">🎮 JOIN EARLY</Link>
-          </Button>
-          <Button asChild size="lg" variant="outline">
-            <Link href="#litepaper">📄 READ LITEPAPER</Link>
-          </Button>
-          <Button asChild size="lg" variant="secondary">
-            <Link href="#telegram">💬 JOIN TELEGRAM</Link>
-          </Button>
+      <section className="relative max-w-6xl mx-auto py-24 sm:py-32 text-center" id="join">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <Image
+            src="/images/background-pattern.png"
+            alt=""
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        <div className="relative z-10">
+          <h3 className="text-4xl sm:text-6xl font-bold tracking-tight bg-gradient-to-r from-purple-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent mb-6">
+            🚀 Don't chase the next meme. Be the meme.
+          </h3>
+          <p className="mt-6 text-xl text-muted-foreground max-w-3xl mx-auto">
+            VARIATIC — the only meme that survives time and evolves with the narrative.
+          </p>
+
+          <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button asChild size="lg" className="bg-gradient-to-r from-purple-600 to-emerald-600 hover:from-purple-700 hover:to-emerald-700 text-white border-0 px-8 py-4 text-lg font-semibold shadow-xl transform hover:scale-105 transition-transform">
+              <Link href="#join">🎮 JOIN EARLY</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="border-purple-500/50 text-purple-300 hover:bg-purple-500/10 px-8 py-4 text-lg font-semibold backdrop-blur-sm">
+              <Link href="#litepaper">📄 READ LITEPAPER</Link>
+            </Button>
+            <Button asChild size="lg" variant="secondary" className="bg-cyan-500/10 border-cyan-500/50 text-cyan-300 hover:bg-cyan-500/20 px-8 py-4 text-lg font-semibold backdrop-blur-sm">
+              <Link href="#telegram">💬 JOIN TELEGRAM</Link>
+            </Button>
+          </div>
+
+          {/* Floating elements */}
+          <div className="mt-16 flex items-center justify-center gap-8 text-6xl opacity-30">
+            <span className="animate-bounce">🐕</span>
+            <span className="animate-bounce delay-100">🐸</span>
+            <span className="animate-bounce delay-200">🍌</span>
+            <span className="animate-bounce delay-300">🚀</span>
+          </div>
         </div>
       </section>
     </div>
