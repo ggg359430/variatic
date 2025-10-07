@@ -2,12 +2,16 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <div className="px-4 sm:px-6">
       {/* HERO */}
       <section className="max-w-6xl mx-auto py-20 sm:py-28 text-center">
+        <div className="flex items-center justify-center">
+          <Image src="/logo.png" alt="VARIATIC Logo" width={80} height={80} className="rounded-sm" />
+        </div>
         <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs text-muted-foreground">
           🧠 MEME TOKEN REIMAGINED
         </div>

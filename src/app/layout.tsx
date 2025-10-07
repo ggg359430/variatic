@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Button } from "@/components/ui/button";
@@ -35,8 +36,9 @@ export default function RootLayout({
         <div className="min-h-screen flex flex-col">
           <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-              <Link href="/" className="font-semibold tracking-tight">
-                VARIATIC
+              <Link href="/" className="flex items-center gap-2" aria-label="VARIATIC Home">
+                <Image src="/logo.png" alt="VARIATIC" width={28} height={28} />
+                <span className="font-semibold tracking-tight hidden sm:inline">VARIATIC</span>
               </Link>
               <nav className="hidden md:flex items-center gap-2">
                 <Button asChild variant="ghost">
