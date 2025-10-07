@@ -178,11 +178,11 @@ export default function Home() {
       {/* WHY IT MATTERS */}
       <section className="max-w-6xl mx-auto py-16 grid gap-6">
         <h2 className="text-2xl sm:text-3xl font-semibold">🌍 Why It Matters</h2>
-        <Card>
+        <Card className="border-cyan-500/20 bg-cyan-500/5 backdrop-blur-sm">
           <CardContent className="pt-6 grid gap-4 text-muted-foreground">
-            <p>Memes are crypto’s breath. But the breath shouldn’t be disposable.</p>
+            <p>Memes are crypto's breath. But the breath shouldn't be disposable.</p>
             <p>VARIATIC gives a second life to liquidity. Instead of hundreds of dying tokens — one that evolves.</p>
-            <p className="font-medium text-foreground">📈 Potential:</p>
+            <p className="font-medium text-cyan-400">📈 Potential:</p>
             <ul className="list-disc pl-5 grid gap-2">
               <li>Liquidity concentration across meme ecosystems</li>
               <li>Growth by adapting to new trends</li>
@@ -197,7 +197,7 @@ export default function Home() {
       {/* HOW IT WORKS */}
       <section className="max-w-6xl mx-auto py-16 grid gap-6">
         <h2 className="text-2xl sm:text-3xl font-semibold">⚙️ How It Works</h2>
-        <Card>
+        <Card className="border-purple-500/20 bg-purple-500/5 backdrop-blur-sm">
           <CardContent className="pt-6 grid gap-3 text-muted-foreground">
             <ol className="list-decimal pl-5 grid gap-2">
               <li>Token launch — fixed contract, adaptive shell</li>
@@ -205,7 +205,7 @@ export default function Home() {
               <li>Brand update — new name, new meme, same token</li>
               <li>New wave — fresh interest, same liquidity</li>
             </ol>
-            <p className="text-foreground">🧬 Example: PEPE VARIATIC → BANANA VARIATIC → AI DOGE VARIATIC. Contract stays. Story changes.</p>
+            <p className="text-purple-300">🧬 Example: PEPE VARIATIC → BANANA VARIATIC → AI DOGE VARIATIC. Contract stays. Story changes.</p>
           </CardContent>
         </Card>
       </section>
@@ -271,13 +271,13 @@ export default function Home() {
       {/* TOKENOMICS */}
       <section className="max-w-6xl mx-auto py-16 grid gap-6">
         <h2 className="text-2xl sm:text-3xl font-semibold">💎 Tokenomics</h2>
-        <Card>
+        <Card className="border-emerald-500/20 bg-emerald-500/5 backdrop-blur-sm">
           <CardContent className="pt-6 grid gap-2 text-muted-foreground">
             <p>🚀 Total Supply: [TBA]</p>
             <p>💧 Dynamic Liquidity Pool — shared across all phases</p>
             <p>🔥 Burn Events on narrative shift</p>
             <p>🗳 Governance — voting rights in meme decisions</p>
-            <p className="text-foreground">Fair. Transparent. Playful.</p>
+            <p className="text-emerald-300">Fair. Transparent. Playful.</p>
           </CardContent>
         </Card>
       </section>
@@ -287,7 +287,7 @@ export default function Home() {
       {/* ROADMAP */}
       <section className="max-w-6xl mx-auto py-16 grid gap-6">
         <h2 className="text-2xl sm:text-3xl font-semibold">🗓 Roadmap</h2>
-        <Card>
+        <Card className="border-pink-500/20 bg-pink-500/5 backdrop-blur-sm">
           <CardContent className="pt-6 grid gap-2 text-muted-foreground">
             <p>✅ Q4 2025 — Launch & Genesis Meme</p>
             <p>🔜 Q1 2026 — Meme DAO Governance</p>
