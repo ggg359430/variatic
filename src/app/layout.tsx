@@ -31,9 +31,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-noise-overlay`}
       >
-        <div className="min-h-screen flex flex-col">
+        {/* Fixed animated background layer */}
+        <div aria-hidden className="bg-radial-grid"></div>
+
+        <div className="relative min-h-screen flex flex-col z-10">
           <header className="sticky top-0 z-40 backdrop-blur-md supports-[backdrop-filter]:bg-background/80 border-b border-white/10 shadow-lg">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
               <Link href="/" className="flex items-center gap-3" aria-label="VARIATIC Home">

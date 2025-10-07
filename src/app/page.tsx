@@ -10,7 +10,7 @@ export default function Home() {
       {/* HERO */}
       <section className="relative max-w-7xl mx-auto py-20 sm:py-32 text-center overflow-hidden">
         {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 opacity-10 animate-gradient" style={{ backgroundImage: "linear-gradient(120deg, rgba(139,92,246,0.15), rgba(16,185,129,0.15), rgba(6,182,212,0.15))", backgroundSize: "200% 200%" }}>
           <Image
             src="/images/background-pattern.png"
             alt=""
@@ -24,12 +24,12 @@ export default function Home() {
         <div className="relative z-10">
           <div className="flex items-center justify-center mb-6">
             <div className="relative">
-              <Image src="/logo.png" alt="VARIATIC Logo" width={100} height={100} className="rounded-xl shadow-2xl" />
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-emerald-500 to-cyan-500 rounded-xl blur opacity-75 animate-pulse"></div>
+              <Image src="/logo.png" alt="VARIATIC Logo" width={100} height={100} className="rounded-xl shadow-2xl animate-rise" />
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-emerald-500 to-cyan-500 rounded-xl blur opacity-60 animate-glow"></div>
             </div>
           </div>
 
-          <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-2 text-sm font-medium text-purple-300 backdrop-blur-sm">
+          <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-2 text-sm font-medium text-purple-300 backdrop-blur-sm animate-float">
             🧠 MEME TOKEN REIMAGINED
           </div>
 
@@ -42,7 +42,7 @@ export default function Home() {
           </p>
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild size="lg" className="bg-gradient-to-r from-purple-600 to-emerald-600 hover:from-purple-700 hover:to-emerald-700 text-white border-0 px-8 py-3 text-lg font-semibold shadow-xl">
+            <Button asChild size="lg" className="bg-gradient-to-r from-purple-600 to-emerald-600 hover:from-purple-700 hover:to-emerald-700 text-white border-0 px-8 py-3 text-lg font-semibold shadow-xl transform hover:scale-[1.02] transition-transform">
               <Link href="#join">🎮 JOIN EARLY</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-purple-500/50 text-purple-300 hover:bg-purple-500/10 px-8 py-3 text-lg font-semibold backdrop-blur-sm">
@@ -58,7 +58,7 @@ export default function Home() {
                 alt="VARIATIC Token Evolution"
                 width={800}
                 height={400}
-                className="rounded-2xl shadow-2xl border border-purple-500/20"
+                className="rounded-2xl shadow-2xl border border-purple-500/20 animate-float"
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent rounded-2xl"></div>
@@ -298,7 +298,7 @@ export default function Home() {
       {/* FINAL CTA */}
       <section className="relative max-w-6xl mx-auto py-24 sm:py-32 text-center" id="join">
         {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 opacity-5 animate-gradient" style={{ backgroundImage: "linear-gradient(120deg, rgba(139,92,246,0.12), rgba(16,185,129,0.12), rgba(6,182,212,0.12))", backgroundSize: "200% 200%" }}>
           <Image
             src="/images/background-pattern.png"
             alt=""
@@ -329,10 +329,10 @@ export default function Home() {
 
           {/* Floating elements */}
           <div className="mt-16 flex items-center justify-center gap-8 text-6xl opacity-30">
-            <span className="animate-bounce">🐕</span>
-            <span className="animate-bounce delay-100">🐸</span>
-            <span className="animate-bounce delay-200">🍌</span>
-            <span className="animate-bounce delay-300">🚀</span>
+            <span className="animate-rise">🐕</span>
+            <span className="animate-rise" style={{ animationDelay: '0.2s' }}>🐸</span>
+            <span className="animate-rise" style={{ animationDelay: '0.4s' }}>🍌</span>
+            <span className="animate-rise" style={{ animationDelay: '0.6s' }}>🚀</span>
           </div>
         </div>
       </section>
