@@ -48,7 +48,7 @@ export default function Home() {
               <Link href="#join">🎮 JOIN EARLY</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-purple-500/50 text-purple-300 hover:bg-purple-500/10 px-8 py-3 text-lg font-semibold backdrop-blur-sm">
-              <Link href="#litepaper">📄 READ LITEPAPER</Link>
+              <Link href="/whitepaper">📄 READ WHITEPAPER</Link>
             </Button>
           </div>
 
@@ -322,7 +322,7 @@ export default function Home() {
               <Link href="#join">🎮 JOIN EARLY</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-purple-500/50 text-purple-300 hover:bg-purple-500/10 px-8 py-4 text-lg font-semibold backdrop-blur-sm">
-              <Link href="#litepaper">📄 READ LITEPAPER</Link>
+              <Link href="/whitepaper">📄 READ WHITEPAPER</Link>
             </Button>
             <Button asChild size="lg" variant="secondary" className="bg-cyan-500/10 border-cyan-500/50 text-cyan-300 hover:bg-cyan-500/20 px-8 py-4 text-lg font-semibold backdrop-blur-sm">
               <Link href="#telegram">💬 JOIN TELEGRAM</Link>

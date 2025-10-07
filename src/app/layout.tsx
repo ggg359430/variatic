@@ -70,13 +70,16 @@ export default function RootLayout({
                 <Button asChild variant="ghost" className="hover:bg-emerald-500/10 text-muted-foreground hover:text-emerald-300 transition-colors">
                   <Link href="#roadmap">Roadmap</Link>
                 </Button>
+                <Button asChild variant="ghost" className="hover:bg-yellow-500/10 text-muted-foreground hover:text-yellow-300 transition-colors">
+                  <Link href="/whitepaper">Whitepaper</Link>
+                </Button>
               </nav>
               <div className="flex items-center gap-3">
                 <Button asChild size="sm" className="bg-gradient-to-r from-purple-600 to-emerald-600 hover:from-purple-700 hover:to-emerald-700 text-white border-0 shadow-lg">
                   <Link href="#join">🎮 Join Early</Link>
                 </Button>
                 <Button asChild size="sm" variant="outline" className="border-purple-500/50 text-purple-300 hover:bg-purple-500/10 backdrop-blur-sm">
-                  <Link href="#litepaper">📄 Read Litepaper</Link>
+                  <Link href="/whitepaper">📄 Whitepaper</Link>
                 </Button>
               </div>
             </div>
