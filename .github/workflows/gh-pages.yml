@@ -30,13 +30,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build and Export
+      - name: Build (static export)
         env:
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
         run: npm run build:static
 
-      - name: Add .nojekyll
-        run: echo "" > out/.nojekyll
+      - name: Prepare static output folder
+        run: |
+          mkdir -p out
+          cp -r .next/static out/_next/static
+          cp -r public/* out/ 2> NUL || true
+          copy /y public\.nojekyll out\.nojekyll 2> NUL || echo.> out\.nojekyll
+          (Get-Content .next\BUILD_ID) | Out-File -FilePath out\BUILD_ID -Encoding ascii
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
