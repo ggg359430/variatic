@@ -364,7 +364,7 @@ export default function Home() {
               <Link href="/whitepaper">📄 READ WHITEPAPER</Link>
             </Button>
             <Button asChild size="lg" variant="secondary" className="bg-cyan-500/10 border-cyan-500/50 text-cyan-300 hover:bg-cyan-500/20 px-8 py-4 text-lg font-semibold backdrop-blur-sm">
-              <Link href="#telegram">💬 JOIN TELEGRAM</Link>
+              <Link href="https://t.me/variatic_token" target="_blank" rel="noopener noreferrer">💬 JOIN TELEGRAM</Link>
             </Button>
           </div>
 
