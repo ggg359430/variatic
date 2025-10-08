@@ -8,7 +8,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-const CONTRACT_ADDRESS = "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb8";
+const CONTRACT_ADDRESS = "0xD8E46a8d9032b2A1a4dAe75B26D790572457fA34";
 
 export default function Home() {
   const [copied, setCopied] = useState(false);
