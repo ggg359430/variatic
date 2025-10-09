@@ -18,6 +18,7 @@ export default function Home() {
   const [copied, setCopied] = useState(false);
   const [addingToWallet, setAddingToWallet] = useState<string | null>(null);
   const [showWalletOptions, setShowWalletOptions] = useState(false);
+  const [iframeError, setIframeError] = useState(false);
 
   const copyToClipboard = async () => {
     try {
@@ -348,17 +349,36 @@ export default function Home() {
                   Replace inputCurrency with your token address and outputCurrency with the pair token
                   Example: ...swap?theme=dark&outputCurrency=YOUR_TOKEN_ADDRESS&inputCurrency=0x55d398326f99059fF775485246999027B3197955
                 */}
-                <iframe
-                  src="https://pancakeswap.finance/swap?theme=dark&outputCurrency=BNB&inputCurrency=0x55d398326f99059fF775485246999027B3197955"
-                  height="660px"
-                  width="100%"
-                  className="border-0 rounded-xl bg-background/50 backdrop-blur-sm"
-                  style={{
-                    border: 'none',
-                    borderRadius: '16px',
-                    minWidth: '300px',
-                  }}
-                />
+                {!iframeError ? (
+                  <iframe
+                    src="https://pancakeswap.finance/swap?theme=dark&outputCurrency=BNB&inputCurrency=0x55d398326f99059fF775485246999027B3197955"
+                    height="660px"
+                    width="100%"
+                    className="border-0 rounded-xl bg-background/50 backdrop-blur-sm"
+                    style={{
+                      border: 'none',
+                      borderRadius: '16px',
+                      minWidth: '300px',
+                    }}
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+                    loading="lazy"
+                    title="PancakeSwap Swap Widget"
+                    onError={() => setIframeError(true)}
+                  />
+                ) : (
+                  <div className="h-[660px] w-full rounded-xl bg-background/50 backdrop-blur-sm border border-yellow-500/20 flex flex-col items-center justify-center p-8 text-center">
+                    <div className="text-6xl mb-4">🥞</div>
+                    <h3 className="text-xl font-semibold text-yellow-400 mb-2">Swap Widget Unavailable</h3>
+                    <p className="text-muted-foreground mb-4">
+                      PancakeSwap widget is temporarily unavailable. You can still swap directly on PancakeSwap.
+                    </p>
+                    <Button asChild className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white">
+                      <a href="https://pancakeswap.finance/swap?theme=dark&outputCurrency=BNB&inputCurrency=0x55d398326f99059fF775485246999027B3197955" target="_blank" rel="noopener noreferrer">
+                        🔗 Open PancakeSwap
+                      </a>
+                    </Button>
+                  </div>
+                )}
               </div>
 
               <p className="text-sm text-muted-foreground text-center max-w-md">
