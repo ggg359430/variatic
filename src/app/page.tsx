@@ -17,6 +17,7 @@ const TOKEN_IMAGE = "https://variatictoken.com/logo.png";
 export default function Home() {
   const [copied, setCopied] = useState(false);
   const [addingToWallet, setAddingToWallet] = useState<string | null>(null);
+  const [showWalletOptions, setShowWalletOptions] = useState(false);
 
   const copyToClipboard = async () => {
     try {
@@ -28,12 +29,29 @@ export default function Home() {
     }
   };
 
+  const detectWallets = () => {
+    const hasMetaMask = typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask;
+    const hasTrustWallet = typeof window.ethereum !== "undefined" && window.ethereum.isTrust;
+    return { hasMetaMask, hasTrustWallet };
+  };
+
+  const showWalletInstallOptions = () => {
+    const { hasMetaMask, hasTrustWallet } = detectWallets();
+    
+    if (!hasMetaMask && !hasTrustWallet) {
+      setShowWalletOptions(true);
+      return true;
+    }
+    return false;
+  };
+
   const addToMetaMask = async () => {
     try {
       setAddingToWallet("metamask");
       
       // Check if MetaMask is installed
-      if (typeof window.ethereum === "undefined") {
+      if (typeof window.ethereum === "undefined" || !window.ethereum.isMetaMask) {
+        if (showWalletInstallOptions()) return;
         alert("MetaMask is not installed. Please install MetaMask to continue.");
         return;
       }
@@ -86,7 +104,8 @@ export default function Home() {
       setAddingToWallet("trustwallet");
       
       // Check if Web3 provider is available
-      if (typeof window.ethereum === "undefined") {
+      if (typeof window.ethereum === "undefined" || !window.ethereum.isTrust) {
+        if (showWalletInstallOptions()) return;
         alert("Please open this page in Trust Wallet's DApp browser or install a Web3 wallet.");
         return;
       }
@@ -223,6 +242,64 @@ export default function Home() {
                 {addingToWallet === "trustwallet" ? "Adding..." : "🛡️ Add to Trust Wallet"}
               </Button>
             </div>
+
+            {/* Wallet Options Modal */}
+            {showWalletOptions && (
+              <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+                <Card className="w-full max-w-md border-purple-500/20 bg-background/95 backdrop-blur-sm">
+                  <CardContent className="pt-6 pb-6 px-6">
+                    <div className="text-center space-y-4">
+                      <h3 className="text-xl font-semibold text-purple-300">No Wallet Detected</h3>
+                      <p className="text-muted-foreground">
+                        Install a compatible wallet to add VARIATIC token:
+                      </p>
+                      
+                      <div className="space-y-3">
+                        <Button
+                          asChild
+                          className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white border-0"
+                        >
+                          <a href="https://metamask.io/download/" target="_blank" rel="noopener noreferrer">
+                            🦊 Install MetaMask
+                          </a>
+                        </Button>
+                        
+                        <Button
+                          asChild
+                          className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white border-0"
+                        >
+                          <a href="https://trustwallet.com/download" target="_blank" rel="noopener noreferrer">
+                            🛡️ Install Trust Wallet
+                          </a>
+                        </Button>
+
+                        <Button
+                          asChild
+                          className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white border-0"
+                        >
+                          <a href="https://www.coinbase.com/wallet" target="_blank" rel="noopener noreferrer">
+                            💎 Install Coinbase Wallet
+                          </a>
+                        </Button>
+                      </div>
+
+                      <p className="text-xs text-muted-foreground">
+                        After installing, refresh the page and try again.
+                      </p>
+
+                      <Button
+                        onClick={() => setShowWalletOptions(false)}
+                        variant="outline"
+                        size="sm"
+                        className="border-purple-500/50 text-purple-300 hover:bg-purple-500/10"
+                      >
+                        Close
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
           </div>
 
           {/* Hero Image */}
