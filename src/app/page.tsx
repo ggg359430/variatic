@@ -33,17 +33,31 @@ export default function Home() {
   const detectWallets = () => {
     const hasMetaMask = typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask;
     const hasTrustWallet = typeof window.ethereum !== "undefined" && window.ethereum.isTrust;
-    return { hasMetaMask, hasTrustWallet };
+    const hasAnyWallet = typeof window.ethereum !== "undefined";
+    return { hasMetaMask, hasTrustWallet, hasAnyWallet };
   };
 
   const showWalletInstallOptions = () => {
     const { hasMetaMask, hasTrustWallet } = detectWallets();
-
+    
     if (!hasMetaMask && !hasTrustWallet) {
       setShowWalletOptions(true);
       return true;
     }
     return false;
+  };
+
+  const checkWalletConnection = async () => {
+    try {
+      if (typeof window.ethereum !== "undefined") {
+        const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+        return accounts.length > 0;
+      }
+      return false;
+    } catch (error) {
+      console.log("Wallet connection check failed:", error);
+      return false;
+    }
   };
 
   const addToMetaMask = async () => {
@@ -54,6 +68,13 @@ export default function Home() {
       if (typeof window.ethereum === "undefined" || !window.ethereum.isMetaMask) {
         if (showWalletInstallOptions()) return;
         // Don't show alert if user hasn't explicitly tried to add token
+        return;
+      }
+
+      // Check if wallet is connected
+      const isConnected = await checkWalletConnection();
+      if (!isConnected) {
+        alert("Please connect your MetaMask wallet first to add tokens.");
         return;
       }
 
@@ -89,7 +110,11 @@ export default function Home() {
       if (error.code === 4001) {
         alert("Request was rejected by user.");
       } else if (error.code === -32602) {
-        alert("Invalid parameters. Please check if MetaMask is properly connected.");
+        if (error.message?.includes("existent asset")) {
+          alert("✅ VARIATIC token is already in your MetaMask wallet!");
+        } else {
+          alert("Invalid parameters. Please check if MetaMask is properly connected.");
+        }
       } else if (error.message?.includes("User rejected")) {
         alert("Token addition was cancelled by user.");
       } else {
@@ -103,11 +128,18 @@ export default function Home() {
   const addToTrustWallet = async () => {
     try {
       setAddingToWallet("trustwallet");
-      
+
       // Check if Web3 provider is available
       if (typeof window.ethereum === "undefined" || !window.ethereum.isTrust) {
         if (showWalletInstallOptions()) return;
         // Don't show alert if user hasn't explicitly tried to add token
+        return;
+      }
+
+      // Check if wallet is connected
+      const isConnected = await checkWalletConnection();
+      if (!isConnected) {
+        alert("Please connect your Trust Wallet first to add tokens.");
         return;
       }
 
@@ -143,7 +175,11 @@ export default function Home() {
       if (error.code === 4001) {
         alert("Request was rejected by user.");
       } else if (error.code === -32602) {
-        alert("Invalid parameters. Please check if Trust Wallet is properly connected.");
+        if (error.message?.includes("existent asset")) {
+          alert("✅ VARIATIC token is already in your Trust Wallet!");
+        } else {
+          alert("Invalid parameters. Please check if Trust Wallet is properly connected.");
+        }
       } else if (error.message?.includes("User rejected")) {
         alert("Token addition was cancelled by user.");
       } else {
