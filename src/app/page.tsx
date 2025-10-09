@@ -9,9 +9,14 @@ import { useState } from "react";
 
 // Removed basePath for custom domain deployment
 const CONTRACT_ADDRESS = "0xD8E46a8d9032b2A1a4dAe75B26D790572457fA34";
+const TOKEN_SYMBOL = "TIC";
+const TOKEN_NAME = "Variatic";
+const TOKEN_DECIMALS = 18;
+const TOKEN_IMAGE = "https://variatictoken.com/logo.png";
 
 export default function Home() {
   const [copied, setCopied] = useState(false);
+  const [addingToWallet, setAddingToWallet] = useState<string | null>(null);
 
   const copyToClipboard = async () => {
     try {
@@ -20,6 +25,74 @@ export default function Home() {
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       console.error("Failed to copy:", err);
+    }
+  };
+
+  const addToMetaMask = async () => {
+    try {
+      setAddingToWallet("metamask");
+      // Check if MetaMask is installed
+      if (typeof window.ethereum === "undefined") {
+        alert("MetaMask is not installed. Please install MetaMask to continue.");
+        return;
+      }
+
+      // Request to add token to MetaMask
+      const wasAdded = await window.ethereum.request({
+        method: "wallet_watchAsset",
+        params: {
+          type: "ERC20",
+          options: {
+            address: CONTRACT_ADDRESS,
+            symbol: TOKEN_SYMBOL,
+            decimals: TOKEN_DECIMALS,
+            image: TOKEN_IMAGE,
+          },
+        },
+      });
+
+      if (wasAdded) {
+        alert("Token successfully added to MetaMask!");
+      }
+    } catch (error) {
+      console.error("Error adding token to MetaMask:", error);
+      alert("Failed to add token to MetaMask. Please try again.");
+    } finally {
+      setAddingToWallet(null);
+    }
+  };
+
+  const addToTrustWallet = async () => {
+    try {
+      setAddingToWallet("trustwallet");
+      // Trust Wallet uses the same Web3 provider interface as MetaMask
+      if (typeof window.ethereum === "undefined") {
+        alert("Please open this page in Trust Wallet's DApp browser or install a Web3 wallet.");
+        return;
+      }
+
+      // Request to add token to Trust Wallet
+      const wasAdded = await window.ethereum.request({
+        method: "wallet_watchAsset",
+        params: {
+          type: "ERC20",
+          options: {
+            address: CONTRACT_ADDRESS,
+            symbol: TOKEN_SYMBOL,
+            decimals: TOKEN_DECIMALS,
+            image: TOKEN_IMAGE,
+          },
+        },
+      });
+
+      if (wasAdded) {
+        alert("Token successfully added to Trust Wallet!");
+      }
+    } catch (error) {
+      console.error("Error adding token to Trust Wallet:", error);
+      alert("Failed to add token to Trust Wallet. Please try again.");
+    } finally {
+      setAddingToWallet(null);
     }
   };
 
@@ -89,6 +162,26 @@ export default function Home() {
                 Copied to clipboard!
               </p>
             )}
+
+            {/* Add to Wallet Buttons */}
+            <div className="mt-4 flex flex-col sm:flex-row items-center gap-3">
+              <Button
+                onClick={addToMetaMask}
+                disabled={addingToWallet !== null}
+                size="sm"
+                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white border-0 px-6 py-2 font-semibold shadow-lg transform hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {addingToWallet === "metamask" ? "Adding..." : "🦊 Add to MetaMask"}
+              </Button>
+              <Button
+                onClick={addToTrustWallet}
+                disabled={addingToWallet !== null}
+                size="sm"
+                className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white border-0 px-6 py-2 font-semibold shadow-lg transform hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {addingToWallet === "trustwallet" ? "Adding..." : "🛡️ Add to Trust Wallet"}
+              </Button>
+            </div>
           </div>
 
           {/* Hero Image */}
