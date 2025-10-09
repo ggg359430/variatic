@@ -52,7 +52,7 @@ export default function Home() {
       // Check if MetaMask is installed
       if (typeof window.ethereum === "undefined" || !window.ethereum.isMetaMask) {
         if (showWalletInstallOptions()) return;
-        alert("MetaMask is not installed. Please install MetaMask to continue.");
+        // Don't show alert if user hasn't explicitly tried to add token
         return;
       }
 
@@ -102,11 +102,11 @@ export default function Home() {
   const addToTrustWallet = async () => {
     try {
       setAddingToWallet("trustwallet");
-
+      
       // Check if Web3 provider is available
       if (typeof window.ethereum === "undefined" || !window.ethereum.isTrust) {
         if (showWalletInstallOptions()) return;
-        alert("Please open this page in Trust Wallet's DApp browser or install a Web3 wallet.");
+        // Don't show alert if user hasn't explicitly tried to add token
         return;
       }
 
