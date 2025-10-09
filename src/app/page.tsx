@@ -67,14 +67,6 @@ export default function Home() {
       // Check if MetaMask is installed
       if (typeof window.ethereum === "undefined" || !window.ethereum.isMetaMask) {
         if (showWalletInstallOptions()) return;
-        // Don't show alert if user hasn't explicitly tried to add token
-        return;
-      }
-
-      // Check if wallet is connected
-      const isConnected = await checkWalletConnection();
-      if (!isConnected) {
-        alert("Please connect your MetaMask wallet first to add tokens.");
         return;
       }
 
@@ -82,6 +74,18 @@ export default function Home() {
       if (!window.ethereum.request) {
         alert("Your wallet doesn't support adding custom tokens.");
         return;
+      }
+
+      // Automatically request connection if not connected
+      let isConnected = await checkWalletConnection();
+      if (!isConnected) {
+        try {
+          await window.ethereum.request({ method: 'eth_requestAccounts' });
+          isConnected = true;
+        } catch (error) {
+          console.log("User rejected connection request");
+          return;
+        }
       }
 
       // Request to add token to MetaMask
@@ -99,7 +103,7 @@ export default function Home() {
       });
 
       if (wasAdded) {
-        alert("Token successfully added to MetaMask!");
+        alert("🎉 VARIATIC token successfully added to MetaMask! You can now see it in your wallet.");
       } else {
         alert("Token addition was cancelled by user.");
       }
@@ -132,14 +136,6 @@ export default function Home() {
       // Check if Web3 provider is available
       if (typeof window.ethereum === "undefined" || !window.ethereum.isTrust) {
         if (showWalletInstallOptions()) return;
-        // Don't show alert if user hasn't explicitly tried to add token
-        return;
-      }
-
-      // Check if wallet is connected
-      const isConnected = await checkWalletConnection();
-      if (!isConnected) {
-        alert("Please connect your Trust Wallet first to add tokens.");
         return;
       }
 
@@ -147,6 +143,18 @@ export default function Home() {
       if (!window.ethereum.request) {
         alert("Your wallet doesn't support adding custom tokens. Please try using Trust Wallet's DApp browser.");
         return;
+      }
+
+      // Automatically request connection if not connected
+      let isConnected = await checkWalletConnection();
+      if (!isConnected) {
+        try {
+          await window.ethereum.request({ method: 'eth_requestAccounts' });
+          isConnected = true;
+        } catch (error) {
+          console.log("User rejected connection request");
+          return;
+        }
       }
 
       // Request to add token to Trust Wallet with improved parameters
@@ -164,7 +172,7 @@ export default function Home() {
       });
 
       if (wasAdded) {
-        alert("Token successfully added to Trust Wallet!");
+        alert("🎉 VARIATIC token successfully added to Trust Wallet! You can now see it in your wallet.");
       } else {
         alert("Token addition was cancelled by user.");
       }
@@ -268,7 +276,7 @@ export default function Home() {
                 size="sm"
                 className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white border-0 px-6 py-2 font-semibold shadow-lg transform hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {addingToWallet === "metamask" ? "Adding..." : "🦊 Add to MetaMask"}
+                {addingToWallet === "metamask" ? "Adding..." : "🦊 Auto Add to MetaMask"}
               </Button>
               <Button
                 onClick={addToTrustWallet}
@@ -276,7 +284,7 @@ export default function Home() {
                 size="sm"
                 className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white border-0 px-6 py-2 font-semibold shadow-lg transform hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {addingToWallet === "trustwallet" ? "Adding..." : "🛡️ Add to Trust Wallet"}
+                {addingToWallet === "trustwallet" ? "Adding..." : "🛡️ Auto Add to Trust Wallet"}
               </Button>
             </div>
 
@@ -697,3 +705,5 @@ export default function Home() {
     </div>
   );
 }
+
+
