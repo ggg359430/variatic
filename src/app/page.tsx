@@ -31,9 +31,16 @@ export default function Home() {
   const addToMetaMask = async () => {
     try {
       setAddingToWallet("metamask");
+      
       // Check if MetaMask is installed
       if (typeof window.ethereum === "undefined") {
         alert("MetaMask is not installed. Please install MetaMask to continue.");
+        return;
+      }
+
+      // Check if wallet_watchAsset method is supported
+      if (!window.ethereum.request) {
+        alert("Your wallet doesn't support adding custom tokens.");
         return;
       }
 
@@ -53,10 +60,22 @@ export default function Home() {
 
       if (wasAdded) {
         alert("Token successfully added to MetaMask!");
+      } else {
+        alert("Token addition was cancelled by user.");
       }
     } catch (error) {
       console.error("Error adding token to MetaMask:", error);
-      alert("Failed to add token to MetaMask. Please try again.");
+      
+      // More specific error messages
+      if (error.code === 4001) {
+        alert("Request was rejected by user.");
+      } else if (error.code === -32602) {
+        alert("Invalid parameters. Please check if MetaMask is properly connected.");
+      } else if (error.message?.includes("User rejected")) {
+        alert("Token addition was cancelled by user.");
+      } else {
+        alert(`Failed to add token to MetaMask: ${error.message || "Please try again."}`);
+      }
     } finally {
       setAddingToWallet(null);
     }
@@ -65,13 +84,20 @@ export default function Home() {
   const addToTrustWallet = async () => {
     try {
       setAddingToWallet("trustwallet");
-      // Trust Wallet uses the same Web3 provider interface as MetaMask
+      
+      // Check if Web3 provider is available
       if (typeof window.ethereum === "undefined") {
         alert("Please open this page in Trust Wallet's DApp browser or install a Web3 wallet.");
         return;
       }
 
-      // Request to add token to Trust Wallet
+      // Check if wallet_watchAsset method is supported
+      if (!window.ethereum.request) {
+        alert("Your wallet doesn't support adding custom tokens. Please try using Trust Wallet's DApp browser.");
+        return;
+      }
+
+      // Request to add token to Trust Wallet with improved parameters
       const wasAdded = await window.ethereum.request({
         method: "wallet_watchAsset",
         params: {
@@ -87,10 +113,22 @@ export default function Home() {
 
       if (wasAdded) {
         alert("Token successfully added to Trust Wallet!");
+      } else {
+        alert("Token addition was cancelled by user.");
       }
     } catch (error) {
       console.error("Error adding token to Trust Wallet:", error);
-      alert("Failed to add token to Trust Wallet. Please try again.");
+      
+      // More specific error messages
+      if (error.code === 4001) {
+        alert("Request was rejected by user.");
+      } else if (error.code === -32602) {
+        alert("Invalid parameters. Please check if Trust Wallet is properly connected.");
+      } else if (error.message?.includes("User rejected")) {
+        alert("Token addition was cancelled by user.");
+      } else {
+        alert(`Failed to add token to Trust Wallet: ${error.message || "Please try again."}`);
+      }
     } finally {
       setAddingToWallet(null);
     }
