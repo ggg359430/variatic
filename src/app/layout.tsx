@@ -32,6 +32,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta httpEquiv="Content-Security-Policy" content="frame-src 'self' https://pancakeswap.finance https://*.pancakeswap.finance; frame-ancestors 'self' https://pancakeswap.finance https://*.pancakeswap.finance;" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-noise-overlay`}
       >

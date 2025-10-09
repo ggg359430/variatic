@@ -12,19 +12,6 @@ const nextConfig: NextConfig = {
     // Avoid failing builds due to lint; CI can run lint separately
     ignoreDuringBuilds: true,
   },
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'Content-Security-Policy',
-            value: "frame-ancestors 'self' https://pancakeswap.finance https://*.pancakeswap.finance; frame-src 'self' https://pancakeswap.finance https://*.pancakeswap.finance;",
-          },
-        ],
-      },
-    ];
-  },
 };
 
 export default nextConfig;
