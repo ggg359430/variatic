@@ -19,6 +19,7 @@ export default function Home() {
   const [addingToWallet, setAddingToWallet] = useState<string | null>(null);
   const [showWalletOptions, setShowWalletOptions] = useState(false);
   const [iframeError, setIframeError] = useState(false);
+  const [walletStatus, setWalletStatus] = useState<string>("");
 
   const copyToClipboard = async () => {
     try {
@@ -63,15 +64,18 @@ export default function Home() {
   const addToMetaMask = async () => {
     try {
       setAddingToWallet("metamask");
+      setWalletStatus("");
 
       // Check if MetaMask is installed
       if (typeof window.ethereum === "undefined" || !window.ethereum.isMetaMask) {
+        setWalletStatus("MetaMask not detected. Please install MetaMask first.");
         if (showWalletInstallOptions()) return;
         return;
       }
 
       // Check if wallet_watchAsset method is supported
       if (!window.ethereum.request) {
+        setWalletStatus("Your wallet doesn't support adding custom tokens.");
         alert("Your wallet doesn't support adding custom tokens.");
         return;
       }
@@ -79,13 +83,18 @@ export default function Home() {
       // Automatically request connection if not connected
       let isConnected = await checkWalletConnection();
       if (!isConnected) {
+        setWalletStatus("Connecting to MetaMask...");
         try {
           await window.ethereum.request({ method: 'eth_requestAccounts' });
           isConnected = true;
+          setWalletStatus("Connected! Adding VARIATIC token...");
         } catch (error) {
+          setWalletStatus("Connection cancelled by user.");
           console.log("User rejected connection request");
           return;
         }
+      } else {
+        setWalletStatus("Adding VARIATIC token to MetaMask...");
       }
 
       // Request to add token to MetaMask
@@ -103,8 +112,10 @@ export default function Home() {
       });
 
       if (wasAdded) {
+        setWalletStatus("✅ VARIATIC token successfully added to MetaMask!");
         alert("🎉 VARIATIC token successfully added to MetaMask! You can now see it in your wallet.");
       } else {
+        setWalletStatus("Token addition was cancelled by user.");
         alert("Token addition was cancelled by user.");
       }
     } catch (error: any) {
@@ -132,15 +143,18 @@ export default function Home() {
   const addToTrustWallet = async () => {
     try {
       setAddingToWallet("trustwallet");
+      setWalletStatus("");
 
       // Check if Web3 provider is available
       if (typeof window.ethereum === "undefined" || !window.ethereum.isTrust) {
+        setWalletStatus("Trust Wallet not detected. Please install Trust Wallet first.");
         if (showWalletInstallOptions()) return;
         return;
       }
 
       // Check if wallet_watchAsset method is supported
       if (!window.ethereum.request) {
+        setWalletStatus("Your wallet doesn't support adding custom tokens.");
         alert("Your wallet doesn't support adding custom tokens. Please try using Trust Wallet's DApp browser.");
         return;
       }
@@ -148,13 +162,18 @@ export default function Home() {
       // Automatically request connection if not connected
       let isConnected = await checkWalletConnection();
       if (!isConnected) {
+        setWalletStatus("Connecting to Trust Wallet...");
         try {
           await window.ethereum.request({ method: 'eth_requestAccounts' });
           isConnected = true;
+          setWalletStatus("Connected! Adding VARIATIC token...");
         } catch (error) {
+          setWalletStatus("Connection cancelled by user.");
           console.log("User rejected connection request");
           return;
         }
+      } else {
+        setWalletStatus("Adding VARIATIC token to Trust Wallet...");
       }
 
       // Request to add token to Trust Wallet with improved parameters
@@ -172,8 +191,10 @@ export default function Home() {
       });
 
       if (wasAdded) {
+        setWalletStatus("✅ VARIATIC token successfully added to Trust Wallet!");
         alert("🎉 VARIATIC token successfully added to Trust Wallet! You can now see it in your wallet.");
       } else {
+        setWalletStatus("Token addition was cancelled by user.");
         alert("Token addition was cancelled by user.");
       }
     } catch (error: any) {
@@ -276,7 +297,7 @@ export default function Home() {
                 size="sm"
                 className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white border-0 px-6 py-2 font-semibold shadow-lg transform hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {addingToWallet === "metamask" ? "Adding..." : "🦊 Auto Add to MetaMask"}
+                {addingToWallet === "metamask" ? "🔄 Processing..." : "🦊 Auto Add to MetaMask"}
               </Button>
               <Button
                 onClick={addToTrustWallet}
@@ -284,9 +305,18 @@ export default function Home() {
                 size="sm"
                 className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white border-0 px-6 py-2 font-semibold shadow-lg transform hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {addingToWallet === "trustwallet" ? "Adding..." : "🛡️ Auto Add to Trust Wallet"}
+                {addingToWallet === "trustwallet" ? "🔄 Processing..." : "🛡️ Auto Add to Trust Wallet"}
               </Button>
             </div>
+
+            {/* Status Display */}
+            {walletStatus && (
+              <div className="mt-3 text-center">
+                <p className="text-sm text-purple-300 animate-in fade-in duration-200">
+                  {walletStatus}
+                </p>
+              </div>
+            )}
 
             {/* Wallet Options Modal */}
             {showWalletOptions && (
