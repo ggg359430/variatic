@@ -36,7 +36,7 @@ jobs:
       - name: Ensure .nojekyll and CNAME in output
         run: |
           echo "" > ./out/.nojekyll
-          echo "www.variatictoken.com" > ./out/CNAME
+          echo "variatictoken.com" > ./out/CNAME
         
       - name: Setup Pages
         uses: actions/configure-pages@v4
