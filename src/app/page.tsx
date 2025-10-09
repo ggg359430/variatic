@@ -81,9 +81,9 @@ export default function Home() {
       } else {
         alert("Token addition was cancelled by user.");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error adding token to MetaMask:", error);
-
+      
       // More specific error messages
       if (error.code === 4001) {
         alert("Request was rejected by user.");
@@ -135,9 +135,9 @@ export default function Home() {
       } else {
         alert("Token addition was cancelled by user.");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error adding token to Trust Wallet:", error);
-
+      
       // More specific error messages
       if (error.code === 4001) {
         alert("Request was rejected by user.");
