@@ -37,7 +37,7 @@ export default function Home() {
 
   const showWalletInstallOptions = () => {
     const { hasMetaMask, hasTrustWallet } = detectWallets();
-    
+
     if (!hasMetaMask && !hasTrustWallet) {
       setShowWalletOptions(true);
       return true;
@@ -48,7 +48,7 @@ export default function Home() {
   const addToMetaMask = async () => {
     try {
       setAddingToWallet("metamask");
-      
+
       // Check if MetaMask is installed
       if (typeof window.ethereum === "undefined" || !window.ethereum.isMetaMask) {
         if (showWalletInstallOptions()) return;
@@ -83,7 +83,7 @@ export default function Home() {
       }
     } catch (error) {
       console.error("Error adding token to MetaMask:", error);
-      
+
       // More specific error messages
       if (error.code === 4001) {
         alert("Request was rejected by user.");
@@ -102,7 +102,7 @@ export default function Home() {
   const addToTrustWallet = async () => {
     try {
       setAddingToWallet("trustwallet");
-      
+
       // Check if Web3 provider is available
       if (typeof window.ethereum === "undefined" || !window.ethereum.isTrust) {
         if (showWalletInstallOptions()) return;
@@ -137,7 +137,7 @@ export default function Home() {
       }
     } catch (error) {
       console.error("Error adding token to Trust Wallet:", error);
-      
+
       // More specific error messages
       if (error.code === 4001) {
         alert("Request was rejected by user.");
@@ -253,7 +253,7 @@ export default function Home() {
                       <p className="text-muted-foreground">
                         Install a compatible wallet to add VARIATIC token:
                       </p>
-                      
+
                       <div className="space-y-3">
                         <Button
                           asChild
@@ -263,7 +263,7 @@ export default function Home() {
                             🦊 Install MetaMask
                           </a>
                         </Button>
-                        
+
                         <Button
                           asChild
                           className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white border-0"
@@ -319,12 +319,62 @@ export default function Home() {
         </div>
       </section>
 
+      <Separator id="swap" />
+
+      {/* SWAP SECTION */}
+      <section className="max-w-6xl mx-auto py-16 grid gap-6">
+        <div className="text-center">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent mb-4">
+            🔄 Swap Tokens
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Get ready for VARIATIC — Swap tokens on PancakeSwap
+          </p>
+        </div>
+
+        <Card className="border-yellow-500/20 bg-yellow-500/5 backdrop-blur-sm">
+          <CardContent className="pt-8 pb-8 px-4 sm:px-8">
+            <div className="flex flex-col items-center gap-6">
+              <p className="text-center text-muted-foreground">
+                🥞 Powered by PancakeSwap — The leading DEX on BNB Chain
+              </p>
+
+              <div className="w-full max-w-lg">
+                {/* 
+                  PancakeSwap Swap Widget
+                  Current: USDT (0x55d398326f99059fF775485246999027B3197955) → BNB
+                  
+                  To update when VARIATIC pair is ready:
+                  Replace inputCurrency with your token address and outputCurrency with the pair token
+                  Example: ...swap?theme=dark&outputCurrency=YOUR_TOKEN_ADDRESS&inputCurrency=0x55d398326f99059fF775485246999027B3197955
+                */}
+                <iframe
+                  src="https://pancakeswap.finance/swap?theme=dark&outputCurrency=BNB&inputCurrency=0x55d398326f99059fF775485246999027B3197955"
+                  height="660px"
+                  width="100%"
+                  className="border-0 rounded-xl bg-background/50 backdrop-blur-sm"
+                  style={{
+                    border: 'none',
+                    borderRadius: '16px',
+                    minWidth: '300px',
+                  }}
+                />
+              </div>
+
+              <p className="text-sm text-muted-foreground text-center max-w-md">
+                💡 Once VARIATIC launches, we'll update the swap to support our token pair!
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
       <Separator />
 
       {/* CEO QUOTE */}
       <section className="max-w-4xl mx-auto py-16">
         <blockquote className="text-xl sm:text-2xl leading-relaxed">
-          “The problem with meme-coins is their short lifespan — the narrative dies before the token can grow. We built a token that adapts to the narrative, not the other way around.”
+          "The problem with meme-coins is their short lifespan — the narrative dies before the token can grow. We built a token that adapts to the narrative, not the other way around."
         </blockquote>
         <p className="mt-4 text-sm text-muted-foreground">— &lt;PRIVATE_PERSON&gt;, CEO VARIATIC Token</p>
       </section>
@@ -528,56 +578,6 @@ export default function Home() {
             <p>🔥 Burn Events on narrative shift</p>
             <p>🗳 Governance — voting rights in meme decisions</p>
             <p className="text-emerald-300">Fair. Transparent. Playful.</p>
-          </CardContent>
-        </Card>
-      </section>
-
-      <Separator id="swap" />
-
-      {/* SWAP SECTION */}
-      <section className="max-w-6xl mx-auto py-16 grid gap-6">
-        <div className="text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent mb-4">
-            🔄 Swap Tokens
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Get ready for VARIATIC — Swap tokens on PancakeSwap
-          </p>
-        </div>
-
-        <Card className="border-yellow-500/20 bg-yellow-500/5 backdrop-blur-sm">
-          <CardContent className="pt-8 pb-8 px-4 sm:px-8">
-            <div className="flex flex-col items-center gap-6">
-              <p className="text-center text-muted-foreground">
-                🥞 Powered by PancakeSwap — The leading DEX on BNB Chain
-              </p>
-
-              <div className="w-full max-w-lg">
-                {/* 
-                  PancakeSwap Swap Widget
-                  Current: USDT (0x55d398326f99059fF775485246999027B3197955) → BNB
-                  
-                  To update when VARIATIC pair is ready:
-                  Replace inputCurrency with your token address and outputCurrency with the pair token
-                  Example: ...swap?theme=dark&outputCurrency=YOUR_TOKEN_ADDRESS&inputCurrency=0x55d398326f99059fF775485246999027B3197955
-                */}
-                <iframe
-                  src="https://pancakeswap.finance/swap?theme=dark&outputCurrency=BNB&inputCurrency=0x55d398326f99059fF775485246999027B3197955"
-                  height="660px"
-                  width="100%"
-                  className="border-0 rounded-xl bg-background/50 backdrop-blur-sm"
-                  style={{
-                    border: 'none',
-                    borderRadius: '16px',
-                    minWidth: '300px',
-                  }}
-                />
-              </div>
-
-              <p className="text-sm text-muted-foreground text-center max-w-md">
-                💡 Once VARIATIC launches, we'll update the swap to support our token pair!
-              </p>
-            </div>
           </CardContent>
         </Card>
       </section>
