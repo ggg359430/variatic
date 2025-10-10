@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 // Removed basePath for custom domain deployment
+// Force rebuild to fix 404 issue
 const CONTRACT_ADDRESS = "0xD8E46a8d9032b2A1a4dAe75B26D790572457fA34";
 const TOKEN_SYMBOL = "TIC";
 const TOKEN_NAME = "Variatic";
