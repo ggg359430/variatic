@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Toaster } from "@/components/ui/sonner";
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const basePath = "";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   // Remove basePath and assetPrefix for custom domain deployment
-  trailingSlash: true,
+  trailingSlash: false,
   eslint: {
     // Avoid failing builds due to lint; CI can run lint separately
     ignoreDuringBuilds: true,
