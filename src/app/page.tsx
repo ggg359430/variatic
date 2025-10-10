@@ -40,7 +40,7 @@ export default function Home() {
 
   const showWalletInstallOptions = () => {
     const { hasMetaMask, hasTrustWallet } = detectWallets();
-    
+
     if (!hasMetaMask && !hasTrustWallet) {
       setShowWalletOptions(true);
       return true;
@@ -120,7 +120,7 @@ export default function Home() {
       }
     } catch (error: any) {
       console.error("Error adding token to MetaMask:", error);
-      
+
       // More specific error messages
       if (error.code === 4001) {
         alert("Request was rejected by user.");
@@ -199,7 +199,7 @@ export default function Home() {
       }
     } catch (error: any) {
       console.error("Error adding token to Trust Wallet:", error);
-      
+
       // More specific error messages
       if (error.code === 4001) {
         alert("Request was rejected by user.");
@@ -720,6 +720,9 @@ export default function Home() {
             </Button>
             <Button asChild size="lg" variant="secondary" className="bg-cyan-500/10 border-cyan-500/50 text-cyan-300 hover:bg-cyan-500/20 px-8 py-4 text-lg font-semibold backdrop-blur-sm">
               <Link href="https://t.me/variatic_token" target="_blank" rel="noopener noreferrer">💬 JOIN TELEGRAM</Link>
+            </Button>
+            <Button asChild size="lg" variant="secondary" className="bg-blue-500/10 border-blue-500/50 text-blue-300 hover:bg-blue-500/20 px-8 py-4 text-lg font-semibold backdrop-blur-sm">
+              <Link href="https://x.com/Variatic_token" target="_blank" rel="noopener noreferrer">𝕏 FOLLOW ON X</Link>
             </Button>
           </div>
 

@@ -34,6 +34,18 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta httpEquiv="Content-Security-Policy" content="frame-src 'self' https://pancakeswap.finance https://*.pancakeswap.finance; frame-ancestors 'self' https://pancakeswap.finance https://*.pancakeswap.finance;" />
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-H578LKDEWP"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-H578LKDEWP');
+            `,
+          }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-noise-overlay`}
