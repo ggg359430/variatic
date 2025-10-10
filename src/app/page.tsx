@@ -418,15 +418,13 @@ export default function Home() {
               <div className="w-full max-w-lg">
                 {/* 
                   PancakeSwap Swap Widget
-                  Current: USDT (0x55d398326f99059fF775485246999027B3197955) → BNB
-                  
-                  To update when VARIATIC pair is ready:
-                  Replace inputCurrency with your token address and outputCurrency with the pair token
-                  Example: ...swap?theme=dark&outputCurrency=YOUR_TOKEN_ADDRESS&inputCurrency=0x55d398326f99059fF775485246999027B3197955
+                  VARIATIC Token: 0xD8E46a8d9032b2A1a4dAe75B26D790572457fA34
+                  Pair Address: 0x5092A153895359ec9f77D3A66F95B53dCDf8025E
+                  Swap: USDT → VARIATIC
                 */}
                 {!iframeError ? (
                   <iframe
-                    src="https://pancakeswap.finance/swap?theme=dark&outputCurrency=BNB&inputCurrency=0x55d398326f99059fF775485246999027B3197955"
+                    src="https://pancakeswap.finance/swap?theme=dark&outputCurrency=0xD8E46a8d9032b2A1a4dAe75B26D790572457fA34&inputCurrency=0x55d398326f99059fF775485246999027B3197955"
                     height="660px"
                     width="100%"
                     className="border-0 rounded-xl bg-background/50 backdrop-blur-sm"
@@ -448,7 +446,7 @@ export default function Home() {
                       PancakeSwap widget is temporarily unavailable. You can still swap directly on PancakeSwap.
                     </p>
                     <Button asChild className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white">
-                      <a href="https://pancakeswap.finance/swap?theme=dark&outputCurrency=BNB&inputCurrency=0x55d398326f99059fF775485246999027B3197955" target="_blank" rel="noopener noreferrer">
+                      <a href="https://pancakeswap.finance/swap?theme=dark&outputCurrency=0xD8E46a8d9032b2A1a4dAe75B26D790572457fA34&inputCurrency=0x55d398326f99059fF775485246999027B3197955" target="_blank" rel="noopener noreferrer">
                         🔗 Open PancakeSwap
                       </a>
                     </Button>
@@ -457,7 +455,7 @@ export default function Home() {
               </div>
 
               <p className="text-sm text-muted-foreground text-center max-w-md">
-                💡 Once VARIATIC launches, we'll update the swap to support our token pair!
+                🎉 VARIATIC is now live! Swap USDT for VARIATIC tokens on PancakeSwap.
               </p>
             </div>
           </CardContent>
